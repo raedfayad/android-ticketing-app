@@ -8,11 +8,13 @@ import com.example.myapplication.data.model.LoggedInUser;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -76,8 +78,12 @@ public class LoginDataSource {
             thread.start();
             thread.join();
             if (con[0].getResponseCode() == 200){
+                InputStream in = con[0].getInputStream();
+                String text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+                System.out.println("message response:" + text);
+
                 Gson gson = new Gson();
-                UserToken usertoken = gson.fromJson(con[0].getResponseMessage(), UserToken.class);
+                UserToken usertoken = gson.fromJson(text, UserToken.class);
 
                 LoggedInUser user =
                         new LoggedInUser(

@@ -15,6 +15,7 @@ import com.google.android.material.navigation.NavigationView;
 import android.view.View;
 
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class LoginViewModel extends ViewModel {
@@ -43,7 +44,7 @@ public class LoginViewModel extends ViewModel {
             LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
             loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
         } else {
-            System.out.println(((IOException) ((Result.Error) result).getError()).getCause().toString());
+            System.out.println(Objects.requireNonNull(((Exception) ((Result.Error) result).getError()).getCause()).toString());
             loginResult.setValue(new LoginResult(R.string.login_failed));
         }
 
