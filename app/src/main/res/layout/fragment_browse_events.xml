@@ -19,7 +19,4 @@
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem" />
 
-    <item
-
-        />
 </LinearLayout>

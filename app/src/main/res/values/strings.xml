@@ -13,6 +13,7 @@
     <string name="menu_user_tickets">My Tickets</string>
     <string name="menu_change_password">Change Password</string>
     <string name="menu_logout">Logout</string>
+    <string name="backend_url">http://127.0.0.1:5000/api/</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

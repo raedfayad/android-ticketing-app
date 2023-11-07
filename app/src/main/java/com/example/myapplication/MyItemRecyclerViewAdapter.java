@@ -62,16 +62,15 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
                     String searchStr = constraint.toString().toLowerCase();
                     List<PackageItem> resultData = new ArrayList<>();
 
-                    for (PackageItem packageItem:mValues){
-                        if (packageItem.name.contains(searchStr)){
+                    for (PackageItem packageItem : mValues) {
+                        if (packageItem.name.contains(searchStr)) {
                             resultData.add(packageItem);
+                        }
+                        filterResults.count = resultData.size();
+                        filterResults.values = resultData;
                     }
-                    filterResults.count = resultData.size();
-                    filterResults.values = resultData;
                 }
-
                 return filterResults;
-
             }
 
             @Override

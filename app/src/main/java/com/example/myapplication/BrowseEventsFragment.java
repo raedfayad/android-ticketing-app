@@ -2,13 +2,20 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
+
 import com.example.myapplication.placeholder.PackageContent;
 
 /**
@@ -64,6 +71,38 @@ public class BrowseEventsFragment extends Fragment {
             }
             recyclerView.setAdapter(new MyItemRecyclerViewAdapter(PackageContent.ITEMS));
         }
+
+//        MenuItem menuItem = view.findItem(R.id.search_view);
+//
+//        SearchView search_view = (SearchView) menuItem.getActionView();
+//        search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+////                mba.g
+//                return true;
+//            }
+//        });
         return view;
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.main, menu);
+//
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        if (item.getItemId() == R.id.search_view) {
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
+
 }

@@ -5,8 +5,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SearchEvent;
 import android.view.View;
 import android.view.Menu;
+import android.widget.SearchView;
 
 import com.example.myapplication.data.LoginDataSource;
 import com.google.android.material.snackbar.Snackbar;
@@ -15,6 +17,7 @@ import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
+import androidx.navigation.NavType;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -89,4 +92,6 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
 }
