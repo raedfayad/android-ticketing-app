@@ -33,6 +33,8 @@ import com.example.myapplication.MainActivity.*;
 import com.example.myapplication.R;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Objects;
+
 public class LoginFragment extends Fragment {
 
     private LoginViewModel loginViewModel;
@@ -115,17 +117,6 @@ public class LoginFragment extends Fragment {
         };
         usernameEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
-//        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//
-//            @Override
-//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-//                if (actionId == EditorInfo.IME_ACTION_DONE) {
-//                    loginViewModel.login(usernameEditText.getText().toString(),
-//                            passwordEditText.getText().toString());
-//                }
-//                return false;
-//            }
-//        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,21 +130,15 @@ public class LoginFragment extends Fragment {
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
-        // TODO : initiate successful logged in experience
+        String welcome = getString(R.string.welcome) + " " + model.getDisplayName();
         if (getContext() != null && getContext().getApplicationContext() != null) {
             Toast.makeText(getContext().getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
         }
-//        NavController navController = Navigation.findNavController(this.getActivity(), R.id.nav_host_fragment_content_main);
-//        NavGraph navGraph = navController.getNavInflater().inflate(R.navigation.mobile_navigation);
-//        navGraph.remove(navGraph.findNode(R.id.nav_login));
-//        navController.setGraph(navGraph);
 
-        Intent intent = new  Intent(getContext(), MainActivity.class);
+        Intent intent = new Intent(getContext(), MainActivity.class);
         startActivity(intent);
 
-
-        Navigation.findNavController(this.getActivity(), R.id.nav_host_fragment_content_main).navigate(R.id.nav_browse_events);
+        Navigation.findNavController(this.requireActivity(), R.id.nav_host_fragment_content_main).navigate(R.id.nav_browse_events);
 
     }
 

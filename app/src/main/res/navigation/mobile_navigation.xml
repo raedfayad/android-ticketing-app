@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_user_events" />
     <fragment
         android:id="@+id/nav_browse_events"
-        android:name="com.example.myapplication.BrowseEventsFragment"
+        android:name="com.example.myapplication.PackageFragment"
         android:label="@string/menu_browse_events"
-        tools:layout="@layout/fragment_browse_events" />
+        tools:layout="@layout/fragment_packages_list" />
 </navigation>

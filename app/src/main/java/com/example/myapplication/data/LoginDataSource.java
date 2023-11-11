@@ -30,8 +30,6 @@ public class LoginDataSource {
     public Result<LoggedInUser> login(String username, String password) {
 
         try {
-            // TODO: handle loggedInUser authentication
-
             final HttpURLConnection[] con = new HttpURLConnection[1];
             Thread thread = new Thread(new Runnable() {
                 @Override
@@ -45,15 +43,6 @@ public class LoginDataSource {
                         con[0].setRequestProperty("Content-Type", "application/json");
                         con[0].setConnectTimeout(5000);
                         con[0].setReadTimeout(5000);
-
-//                        Map<String, String> parameters = new HashMap<>();
-//                        parameters.put("username", username);
-//                        parameters.put("password", password);
-//                        con.setDoOutput(true);
-//                        DataOutputStream out = new DataOutputStream(con.getOutputStream());
-//                        out.writeBytes(ParameterStringBuilder.getParamsString(parameters));
-//                        out.flush();
-//                        out.close();
 
                         OutputStream os = con[0].getOutputStream();
                         OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
