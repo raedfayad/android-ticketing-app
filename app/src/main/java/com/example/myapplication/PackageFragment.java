@@ -71,7 +71,7 @@ public class PackageFragment extends Fragment {
                 recyclerView.setAdapter(new MyPackageRecyclerViewAdapter(false));
             } catch (Exception e) {
                 System.out.println("Error: " + e.toString());
-                Toast.makeText(getContext().getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext().getApplicationContext(), e.toString() + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
         return view;

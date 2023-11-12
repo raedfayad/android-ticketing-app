@@ -69,7 +69,7 @@ public class UserEventsFragment extends Fragment {
             try {
                 recyclerView.setAdapter(new MyPackageRecyclerViewAdapter(true));
             } catch (Exception e) {
-                Toast.makeText(getContext().getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext().getApplicationContext(), e.toString() + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
         return view;

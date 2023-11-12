@@ -23,6 +23,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,6 +64,7 @@ public class LoginFragment extends Fragment {
         final EditText passwordEditText = binding.password;
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
+        final Switch registrationSwitch = binding.registrationSwitch;
 
         loginViewModel.getLoginFormState().observe(getViewLifecycleOwner(), new Observer<LoginFormState>() {
 
@@ -123,10 +125,22 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                        passwordEditText.getText().toString(), registrationSwitch.isChecked());
                 loadingProgressBar.setVisibility(View.GONE);
             }
         });
+
+        registrationSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (registrationSwitch.isChecked()) {
+                    loginButton.setText(R.string.action_register);
+                } else {
+                    loginButton.setText(R.string.action_sign_in);
+                }
+            }
+        });
+
     }
 
     private void updateUiWithUser(LoggedInUserView model) {

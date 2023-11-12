@@ -12,7 +12,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -27,7 +29,7 @@ import com.google.gson.Gson;
  */
 public class LoginDataSource {
 
-    public Result<LoggedInUser> login(String username, String password) {
+    public Result<LoggedInUser> login(String username, String password, boolean registerUser) {
 
         try {
             final HttpURLConnection[] con = new HttpURLConnection[1];
@@ -35,27 +37,19 @@ public class LoginDataSource {
                 @Override
                 public void run() {
                     try {
-                        URL url = new URL("http://10.0.2.2:5000/api/account/login");
+                        URL url;
+                        String method;
+
+                        if (registerUser){
+                            url = new URL("http://10.0.2.2:5000/api/accounts");
+                            method = "PUT";
+                        } else {
+                            url = new URL("http://10.0.2.2:5000/api/account/login");
+                            method = "POST";
+                        }
 
                         con[0] = (HttpURLConnection) url.openConnection();
-                        con[0].setRequestMethod("POST");
-
-                        con[0].setRequestProperty("Content-Type", "application/json");
-                        con[0].setConnectTimeout(5000);
-                        con[0].setReadTimeout(5000);
-
-                        OutputStream os = con[0].getOutputStream();
-                        OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
-                        osw.write(String.format("{\"username\":\"%s\",\"password\":\"%s\"}", username, password));
-                        osw.flush();
-                        osw.close();
-                        os.close();  //don't forget to close the OutputStream
-                        con[0].connect();
-
-
-                        // send the request
-                        String response = getFullResponse(con[0]);
-                        System.out.println(response);
+                        con[0] = loginRequest(con[0], username, password, url, method);
                         con[0].disconnect();
 
                     } catch (Exception e) {
@@ -71,15 +65,20 @@ public class LoginDataSource {
                 String text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
                 System.out.println("message response:" + text);
 
-                Gson gson = new Gson();
-                UserToken usertoken = gson.fromJson(text, UserToken.class);
+                if (registerUser){
+                    return login(username, password, false);
+                } else {
+                    Gson gson = new Gson();
+                    UserToken usertoken = gson.fromJson(text, UserToken.class);
 
-                LoggedInUser user =
-                        new LoggedInUser(
-                                usertoken.token,
-                                username);
-                System.out.println("username:"+username+" token:"+usertoken.token);
-                return new Result.Success<>(user);
+                    LoggedInUser user =
+                            new LoggedInUser(
+                                    usertoken.token,
+                                    username);
+                    System.out.println("username:"+username+" token:"+usertoken.token);
+                    return new Result.Success<>(user);
+                }
+
             } else {
                 return new Result.Error(new Exception("Failed to Login"));
             }
@@ -93,5 +92,28 @@ public class LoginDataSource {
 
     public void logout() {
         // TODO: revoke authentication
+
+    }
+
+    public HttpURLConnection loginRequest(HttpURLConnection con, String username, String password, URL url, String method) throws IOException {
+        con.setRequestMethod(method);
+
+        con.setRequestProperty("Content-Type", "application/json");
+        con.setConnectTimeout(5000);
+        con.setReadTimeout(5000);
+
+        OutputStream os = con.getOutputStream();
+        OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
+        osw.write(String.format("{\"username\":\"%s\",\"password\":\"%s\"}", username, password));
+        osw.flush();
+        osw.close();
+        os.close();  //don't forget to close the OutputStream
+        con.connect();
+
+
+        // send the request
+        String response = getFullResponse(con);
+        System.out.println(response);
+        return con;
     }
 }
