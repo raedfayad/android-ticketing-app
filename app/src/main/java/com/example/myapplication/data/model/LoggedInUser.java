@@ -5,8 +5,8 @@ package com.example.myapplication.data.model;
  */
 public class LoggedInUser {
 
-    private String userToken;
-    private String displayName;
+    private final String userToken;
+    private final String displayName;
 
     public LoggedInUser(String userToken, String displayName) {
         this.userToken = userToken;

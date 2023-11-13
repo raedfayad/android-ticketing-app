@@ -19,7 +19,7 @@
         android:id="@+id/nav_user_tickets"
         android:name="com.example.myapplication.UserEventsFragment"
         android:label="@string/menu_user_tickets"
-        tools:layout="@layout/fragment_user_events" />
+        tools:layout="@layout/fragment_user_events_list" />
     <fragment
         android:id="@+id/nav_browse_events"
         android:name="com.example.myapplication.PackageFragment"

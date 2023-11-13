@@ -58,18 +58,17 @@ public class UserEventsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_user_events_list, container, false);
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
+        if (view instanceof RecyclerView recyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             try {
-                recyclerView.setAdapter(new MyPackageRecyclerViewAdapter(true));
+                recyclerView.setAdapter(new UserEventsRecyclerViewAdapter());
             } catch (Exception e) {
-                Toast.makeText(getContext().getApplicationContext(), e.toString() + e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext().getApplicationContext(), e + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
         return view;

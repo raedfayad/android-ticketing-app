@@ -1,27 +1,40 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory app:title="@string/messages_header">
+    <PreferenceCategory
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:title="Account Details" >
+        <EditTextPreference
+            android:key="username"
+            android:title="Username: sample"
+            app:summary="This field cannot be modified"
+            android:enabled="false"
+            android:selectable="false"
+            android:persistent="false"
+            android:shouldDisableView="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Change your password">
 
         <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
+            app:key="new_password"
+            app:title="Enter your new password"
+            app:summary="Click here to change your password"
+            app:defaultValue=""
+            app:persistent="false"
+            android:inputType="textWebPassword">
+
+        </EditTextPreference>
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/sync_header">
+    <PreferenceCategory app:title="Logged In Account">
 
         <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
-
-        <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
-
+            app:defaultValue="false"
+            app:key="logout"
+            app:title="Want to logout?" />
     </PreferenceCategory>
 
 </PreferenceScreen>

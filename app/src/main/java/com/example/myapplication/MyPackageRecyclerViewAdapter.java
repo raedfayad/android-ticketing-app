@@ -108,17 +108,8 @@ public class MyPackageRecyclerViewAdapter extends RecyclerView.Adapter<MyPackage
                 return packageList.packages;
             }
 
-//
-//            LoggedInUser user =
-//                    new LoggedInUser(
-//                            usertoken.token,
-//                            username);
-//            System.out.println("username:"+username+" token:"+usertoken.token);
-//            return new Result.Success<>(user);
-//            packages.add(new Package("sample", "sample description", 1, true, 100.00));
-
         } else {
-            throw new Exception("Received a non-2xx response. Response code: " + String.valueOf(con[0].getResponseCode()) + " Message: " + con[0].getResponseMessage());
+            throw new Exception("Received a non-2xx response. Response code: " + con[0].getResponseCode() + " Message: " + con[0].getResponseMessage());
         }
 
 

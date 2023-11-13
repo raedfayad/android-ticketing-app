@@ -59,9 +59,8 @@ public class PackageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_packages_list, container, false);
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
+        if (view instanceof RecyclerView recyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -70,8 +69,8 @@ public class PackageFragment extends Fragment {
             try {
                 recyclerView.setAdapter(new MyPackageRecyclerViewAdapter(false));
             } catch (Exception e) {
-                System.out.println("Error: " + e.toString());
-                Toast.makeText(getContext().getApplicationContext(), e.toString() + e.getMessage(), Toast.LENGTH_LONG).show();
+                System.out.println("Error: " + e);
+                Toast.makeText(getContext().getApplicationContext(), e + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
         return view;

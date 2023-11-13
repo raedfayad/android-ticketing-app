@@ -92,6 +92,7 @@ public class LoginDataSource {
 
     public void logout() {
         // TODO: revoke authentication
+        System.out.println("Logging out user!");
 
     }
 
@@ -103,7 +104,7 @@ public class LoginDataSource {
         con.setReadTimeout(5000);
 
         OutputStream os = con.getOutputStream();
-        OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
+        OutputStreamWriter osw = new OutputStreamWriter(os, StandardCharsets.UTF_8);
         osw.write(String.format("{\"username\":\"%s\",\"password\":\"%s\"}", username, password));
         osw.flush();
         osw.close();
