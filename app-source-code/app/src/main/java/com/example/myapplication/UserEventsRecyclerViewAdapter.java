@@ -60,7 +60,7 @@ public class UserEventsRecyclerViewAdapter extends RecyclerView.Adapter<UserEven
             public void run() {
                 try {
                     URL url;
-                    url = new URL("http://10.0.2.2:5000/api/account/purchases");
+                    url = new URL("https://10.0.2.11/api/account/purchases");
 
                     con[0] = (HttpURLConnection) url.openConnection();
                     con[0].setRequestMethod("GET");
@@ -154,6 +154,9 @@ public class UserEventsRecyclerViewAdapter extends RecyclerView.Adapter<UserEven
 
                     Intent intent = new Intent(v.getContext(), QRCodeActivity.class);
                     intent.putExtra("key", qrCodeValue);
+                    String seed = v.getContext().getString(R.string.sauce); //"@0a1X4k`~{n>{=!`Lg!`\"";
+                    intent.putExtra("sauce", seed);
+                    System.out.println("sauce is: " + seed);
                     v.getContext().startActivity(intent);
 
 

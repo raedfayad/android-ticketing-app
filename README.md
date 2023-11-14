@@ -34,18 +34,7 @@ As part of the app, there is a hidden CTF challenge. To find the hidden flag in 
 
 ## APK Download 📥
 
-You can download the pre-built APK file for this app from the following link: [Download APK](#) 📤
-
-## Screenshots 📸
-
-![Screenshot 1](/screenshots/browse_tickets.png)
-![Screenshot 2](/screenshots/Pre-login-Nav-bar.png)
-![Screenshot 3](/screenshots/login.png)
-![Screenshot 4](/screenshots/registration.png)
-![Screenshot 5](/screenshots/Post-login-Nav-bar.png)
-![Screenshot 6](/screenshots/user-tickets.png)
-![Screenshot 7](/screenshots/QR-code.png)
-![Screenshot 8](/screenshots/user-settings.png)
+You can download the pre-built APK file for this app from the following link: [Download APK](/ticketing-app.apk) 📤
 
 ## Contributors 👥
 
@@ -59,3 +48,16 @@ This project is licensed under the [MIT License](LICENSE).
 
 Happy exploring the Event Ticketing app! If you have any questions or encounter issues, feel free to open an issue or contact the contributors.
  🚀
+
+
+## Screenshots 📸
+
+![Screenshot 1](/screenshots/browse_tickets.png)
+![Screenshot 2](/screenshots/Pre-login-Nav-bar.png)
+![Screenshot 3](/screenshots/login.png)
+![Screenshot 4](/screenshots/registration.png)
+![Screenshot 5](/screenshots/Post-login-Nav-bar.png)
+![Screenshot 6](/screenshots/user-tickets.png)
+![Screenshot 7](/screenshots/QR-code.png)
+![Screenshot 8](/screenshots/user-settings.png)
+

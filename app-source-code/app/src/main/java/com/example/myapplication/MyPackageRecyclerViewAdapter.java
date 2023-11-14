@@ -58,9 +58,10 @@ public class MyPackageRecyclerViewAdapter extends RecyclerView.Adapter<MyPackage
                 try {
                     URL url;
                     if (forUser){
-                        url = new URL("http://10.0.2.2:5000/api/account/purchases");
+
+                        url = new URL("https://10.0.2.11/api/account/purchases");
                     } else {
-                        url = new URL("http://10.0.2.2:5000/api/packages");
+                        url = new URL("https://10.0.2.11/api/packages");
                     }
 
 
